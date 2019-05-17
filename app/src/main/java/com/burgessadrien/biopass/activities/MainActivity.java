@@ -3,6 +3,7 @@ package com.burgessadrien.biopass.activities;
 import android.os.Bundle;
 
 import com.burgessadrien.biopass.R;
+import com.burgessadrien.biopass.realm.objects.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -12,8 +13,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Realm.init(this);
         realm = Realm.getDefaultInstance();
+        User user = realm.where(User.class).findFirst();
+        Toast.makeText(getApplicationContext(), user.getName(), Toast.LENGTH_LONG).show();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        realm.close();
     }
 
     @Override
@@ -65,6 +70,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 }

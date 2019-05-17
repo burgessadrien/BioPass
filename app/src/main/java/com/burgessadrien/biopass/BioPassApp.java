@@ -3,7 +3,10 @@ package com.burgessadrien.biopass;
 import android.app.Application;
 import android.widget.Toast;
 
+import com.burgessadrien.biopass.realm.objects.User;
 import com.burgessadrien.biopass.realm.utils.Encryption;
+
+import java.util.UUID;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -17,10 +20,16 @@ public class BioPassApp extends Application {
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("biopass.realm")
-                .schemaVersion(0)
+                .schemaVersion(0) // modify with schema changes
                 .encryptionKey(key)
                 .build();
+        Realm.deleteRealm(config); // delete when ready
         Realm.setDefaultConfiguration(config);
-        Toast.makeText(getApplicationContext(), "Application has started!", Toast.LENGTH_LONG).show();
+
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        User user = realm.createObject(User.class, UUID.randomUUID().toString());
+        user.setName("Adrien");
+        realm.commitTransaction();
     }
 }
