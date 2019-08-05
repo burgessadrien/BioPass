@@ -9,7 +9,7 @@ import io.realm.annotations.Required;
 public class Entry extends RealmObject {
 
     @PrimaryKey
-    private int id;
+    private String id;
 
     @Required
     private String password;

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BioPass</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_prime">PrimeActivity</string>
+    <string name="title_activity_group">GroupActivity</string>
+    <string name="title_activity_entry">EntryActivity</string>
 </resources>
