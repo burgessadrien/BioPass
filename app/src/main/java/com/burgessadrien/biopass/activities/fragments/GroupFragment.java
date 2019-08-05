@@ -48,6 +48,6 @@ public class GroupFragment extends Fragment {
         mAdapter = new GroupAdapter(groups);
         recyclerView.setAdapter(mAdapter);
 
-        return inflater.inflate(R.layout.fragment_group, container, false);
+        return rootView;
     }
 }
