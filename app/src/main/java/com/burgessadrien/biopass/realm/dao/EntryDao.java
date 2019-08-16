@@ -8,6 +8,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 import com.burgessadrien.biopass.realm.objects.Entry;
+import com.burgessadrien.biopass.realm.utils.LiveRealmResults;
 
 public class EntryDao {
 
@@ -35,7 +36,10 @@ public class EntryDao {
         });
     }
 
-    public RealmResults<Entry> loadAll() {
-        return mRealm.where(Entry.class).findAll().sort("id");
+    public LiveRealmResults<Entry> loadAll() {
+        return new LiveRealmResults<>(mRealm.where(Entry.class)
+                .findAllAsync()
+                .sort("id")
+        );
     }
 }

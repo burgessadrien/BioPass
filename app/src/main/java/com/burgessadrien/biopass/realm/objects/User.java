@@ -8,7 +8,8 @@ import io.realm.annotations.Required;
 public class User extends RealmObject {
 
     @PrimaryKey
-    private String id;
+    @Required
+    private Long id;
 
     private String name;
 

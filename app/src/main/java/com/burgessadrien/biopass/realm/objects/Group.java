@@ -8,12 +8,20 @@ import io.realm.annotations.Required;
 public class Group extends RealmObject {
 
     @PrimaryKey
-    private String id;
+    @Required
+    private long id;
 
     @Required
     private String name;
 
     private RealmList<Entry> entries;
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setName(String name) { this.name = name; }
     public String getName() { return this.name; }

@@ -5,9 +5,10 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 import com.burgessadrien.biopass.realm.objects.Group;
+import com.burgessadrien.biopass.realm.utils.LiveRealmObject;
+import com.burgessadrien.biopass.realm.utils.LiveRealmResults;
 
 public class GroupDao {
 
@@ -17,7 +18,8 @@ public class GroupDao {
         mRealm = realm;
     }
 
-    public void save(final Group group) {
+    public void save(Group group) {
+        updateId(group);
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -27,6 +29,7 @@ public class GroupDao {
     }
 
     public void save(final List<Group> groupList) {
+        groupList.stream().forEach(this::updateId);
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -35,7 +38,19 @@ public class GroupDao {
         });
     }
 
-    public RealmResults<Group> loadAll() {
-        return mRealm.where(Group.class).findAll().sort("id");
+    public LiveRealmResults<Group> loadAll() {
+        return new LiveRealmResults<>(mRealm.where(Group.class)
+                .findAllAsync()
+                .sort("id")
+        );
+    }
+
+    private void updateId(Group group) {
+        group.setId(getNextId());
+    }
+
+    private Long getNextId() {
+        Number id = mRealm.where(Group.class).max("id");
+        return id != null ? id.longValue() + 1 : 1;
     }
 }

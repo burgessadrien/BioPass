@@ -3,6 +3,7 @@ package com.burgessadrien.biopass;
 import android.app.Application;
 import android.widget.Toast;
 
+import com.burgessadrien.biopass.realm.dao.GroupDao;
 import com.burgessadrien.biopass.realm.objects.Group;
 import com.burgessadrien.biopass.realm.objects.User;
 import com.burgessadrien.biopass.realm.utils.Encryption;
@@ -28,9 +29,9 @@ public class BioPassApp extends Application {
         Realm.setDefaultConfiguration(config);
 
         Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        Group group = realm.createObject(Group.class, UUID.randomUUID().toString());
+        GroupDao groupDao = new GroupDao(realm);
+        Group group = new Group();
         group.setName("Development");
-        realm.commitTransaction();
+        groupDao.save(group);
     }
 }
