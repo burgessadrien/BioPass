@@ -8,7 +8,6 @@ import io.realm.annotations.Required;
 public class Group extends RealmObject {
 
     @PrimaryKey
-    @Required
     private long id;
 
     @Required

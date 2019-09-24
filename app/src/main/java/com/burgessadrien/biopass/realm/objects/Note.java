@@ -7,7 +7,6 @@ import io.realm.annotations.Required;
 public class Note extends RealmObject {
 
     @PrimaryKey
-    @Required
     private long id;
 
     @Required

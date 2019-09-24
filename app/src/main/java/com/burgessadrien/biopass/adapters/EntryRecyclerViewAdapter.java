@@ -9,12 +9,13 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.burgessadrien.biopass.R;
+import com.burgessadrien.biopass.realm.objects.Entry;
 
 import java.util.List;
 
 public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<EntryRecyclerViewAdapter.EntryViewHolder> {
 
-    private List<String> entries;
+    private List<Entry> entries;
 
     public class EntryViewHolder extends RecyclerView.ViewHolder {
 
@@ -27,7 +28,7 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<EntryRecycler
 
     }
 
-    public EntryRecyclerViewAdapter(List<String> entries) {
+    public EntryRecyclerViewAdapter(List<Entry> entries) {
         this.entries = entries;
     }
 
@@ -45,13 +46,18 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<EntryRecycler
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(EntryViewHolder holder, final int position) {
-        holder.textView.setText(entries.get(position));
+        holder.textView.setText(entries.get(position).getSite());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return entries.size();
+    }
+
+    public void updateItems(List<Entry> entries) {
+        this.entries = entries;
+        notifyDataSetChanged();
     }
 
 }

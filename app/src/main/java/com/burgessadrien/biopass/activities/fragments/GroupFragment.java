@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,8 +28,6 @@ import java.util.Collections;
 import java.util.List;
 
 import io.realm.Realm;
-
-import static io.realm.internal.SyncObjectServerFacade.getApplicationContext;
 
 public class GroupFragment extends Fragment {
 

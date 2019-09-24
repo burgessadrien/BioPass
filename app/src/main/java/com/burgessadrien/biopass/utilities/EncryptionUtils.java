@@ -1,10 +1,8 @@
-package com.burgessadrien.biopass.realm.utils;
+package com.burgessadrien.biopass.utilities;
 
 import java.security.SecureRandom;
 
-import io.realm.RealmConfiguration;
-
-public class Encryption {
+public class EncryptionUtils {
 
     public static byte[] generateKey() {
         byte[] key = new byte[64];

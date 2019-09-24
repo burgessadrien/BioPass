@@ -7,8 +7,7 @@ import java.util.List;
 import io.realm.Realm;
 
 import com.burgessadrien.biopass.realm.objects.Group;
-import com.burgessadrien.biopass.realm.utils.LiveRealmObject;
-import com.burgessadrien.biopass.realm.utils.LiveRealmResults;
+import com.burgessadrien.biopass.realm.liveRealm.LiveRealmResults;
 
 public class GroupDao {
 

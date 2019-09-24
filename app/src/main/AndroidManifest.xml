@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
-
     <application
         android:name=".BioPassApp"
         android:allowBackup="true"
@@ -13,30 +12,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.AuthenticationActivity"></activity>
+        <activity android:name=".activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.NoteActivity"
+            android:label="@string/title_activity_note"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.AuthenticationActivity" />
         <activity
             android:name=".activities.PrimeActivity"
             android:label="@string/title_activity_prime"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
-
         <activity
             android:name=".activities.EntryActivity"
             android:label="@string/title_activity_entry"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".activities.GroupActivity"
-            android:label="@string/title_activity_group"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-        </activity>
-
     </application>
 
 </manifest>

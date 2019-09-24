@@ -9,18 +9,15 @@ import io.realm.annotations.Required;
 public class Entry extends RealmObject {
 
     @PrimaryKey
-    @Required
     private long id;
+    @Required
+    private String site;
 
     @Required
     private String password;
 
     @Required
-    private String app;
-
     private String username;
-
-    private String site;
 
     private Note note;
 
@@ -38,14 +35,6 @@ public class Entry extends RealmObject {
 
     public String getPassword() {
         return this.password;
-    }
-
-    public String getApp() {
-        return app;
-    }
-
-    public void setApp(String app) {
-        this.app = app;
     }
 
     public String getUsername() {

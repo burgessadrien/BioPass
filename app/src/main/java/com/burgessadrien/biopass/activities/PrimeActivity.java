@@ -28,13 +28,16 @@ public class PrimeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        createTabPagerAdapter();
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    private void createTabPagerAdapter() {
         adapter = new TabPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new GroupFragment(), "Groups");
         adapter.addFragment(new EntryFragment(), "Entries");
         adapter.addFragment(new NoteFragment(), "Notes");
-
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
     }
 
 }

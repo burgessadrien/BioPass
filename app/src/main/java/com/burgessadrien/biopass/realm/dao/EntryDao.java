@@ -5,10 +5,9 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 import com.burgessadrien.biopass.realm.objects.Entry;
-import com.burgessadrien.biopass.realm.utils.LiveRealmResults;
+import com.burgessadrien.biopass.realm.liveRealm.LiveRealmResults;
 
 public class EntryDao {
 
@@ -19,6 +18,7 @@ public class EntryDao {
     }
 
     public void save(final Entry entry) {
+        updateId(entry);
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -41,5 +41,14 @@ public class EntryDao {
                 .findAllAsync()
                 .sort("id")
         );
+    }
+
+    private void updateId(Entry entry) {
+        entry.setId(getNextId());
+    }
+
+    private Long getNextId() {
+        Number id = mRealm.where(Entry.class).max("id");
+        return id != null ? id.longValue() + 1 : 1;
     }
 }

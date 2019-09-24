@@ -1,7 +1,10 @@
 package com.burgessadrien.biopass.realm;
 
 
+import android.content.Context;
+
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class RealmManager {
 
@@ -32,5 +35,17 @@ public class RealmManager {
 
             }
         });
+    }
+
+    public static void instantiate(Context context, byte[] key, boolean create) {
+        Realm.init(context);
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("biopass.realm")
+                .schemaVersion(0) // modify with schema changes
+                .encryptionKey(key)
+                .build();
+        if (create)
+            Realm.deleteRealm(config); // delete when ready
+        Realm.setDefaultConfiguration(config);
     }
 }
